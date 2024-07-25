@@ -1,0 +1,55 @@
+import java.util.Scanner;
+
+public class CoordenadasConversion {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        boolean continuar = true;
+
+        while (continuar) {
+            System.out.println("Conversión a coordenadas polares y viceversa");
+            System.out.println("Selecciona una opción:");
+            System.out.println("1. Convertir de coordenadas polares a cartesianas");
+            System.out.println("2. Convertir de coordenadas cartesianas a polares");
+            System.out.println("3. Cerrar programa");
+            int opcion = scanner.nextInt();
+
+            switch (opcion) {
+                case 1:
+                    System.out.print("Ingresa el radio (r): ");
+                    double r = scanner.nextDouble();
+                    System.out.print("Ingresa el ángulo (θ en radianes): ");
+                    double theta = scanner.nextDouble();
+                    convertirPolarACartesiana(r, theta);
+                    break;
+                case 2:
+                    System.out.print("Ingresa la coordenada x: ");
+                    double x = scanner.nextDouble();
+                    System.out.print("Ingresa la coordenada y: ");
+                    double y = scanner.nextDouble();
+                    convertirCartesianaAPolar(x, y);
+                    break;
+                case 3:
+                    continuar = false;
+                    System.out.println("Cerrando programa...");
+                    break;
+                default:
+                    System.out.println("Opción no válida");
+            }
+        }
+
+        scanner.close();
+    }
+
+    public static void convertirPolarACartesiana(double r, double theta) {
+        double x = r * Math.cos(theta);
+        double y = r * Math.sin(theta);
+        System.out.println("Coordenadas cartesianas: (" + x + ", " + y + ")");
+    }
+
+    public static void convertirCartesianaAPolar(double x, double y) {
+        double r = Math.sqrt(x * x + y * y);
+        double theta = Math.atan2(y, x);
+        System.out.println("Coordenadas polares: (r: " + r + ", θ: " + theta + " radianes)");
+    }
+}
